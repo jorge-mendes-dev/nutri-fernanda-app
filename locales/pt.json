@@ -1,0 +1,7 @@
+{
+  "greeting": "Olá",
+  "home": {
+    "title": "Bem-vindo ao aplicativo!",
+    "description": "Esta é a versão em português."
+  }
+}
