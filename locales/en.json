@@ -3,5 +3,33 @@
   "home": {
     "title": "Welcome to the app!",
     "description": "This is the English version."
+  },
+  "login": {
+    "title": "Login",
+    "choose": "Choose a social provider to login:",
+    "google": "Google",
+    "facebook": "Facebook",
+    "loading": "Loading..."
+  },
+  "dashboard": {
+    "title": "Admin Dashboard",
+    "welcome": "Welcome to the admin dashboard."
+  },
+  "patient": {
+    "title": "Patient Area",
+    "welcome": "Welcome to your patient area."
+  },
+  "navbar": {
+    "openMenu": "Open main menu",
+    "dashboard": "Dashboard",
+    "team": "Team",
+    "projects": "Projects",
+    "calendar": "Calendar",
+    "notifications": "View notifications",
+    "openUserMenu": "Open user menu",
+    "profile": "Your profile",
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "login": "Login"
   }
 }

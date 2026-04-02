@@ -3,5 +3,33 @@
   "home": {
     "title": "Bem-vindo ao aplicativo!",
     "description": "Esta é a versão em português."
+  },
+  "login": {
+    "title": "Entrar",
+    "choose": "Escolha um provedor social para entrar:",
+    "google": "Google",
+    "facebook": "Facebook",
+    "loading": "Carregando..."
+  },
+  "dashboard": {
+    "title": "Painel Administrativo",
+    "welcome": "Bem-vindo ao painel administrativo."
+  },
+  "patient": {
+    "title": "Área do Paciente",
+    "welcome": "Bem-vindo à sua área do paciente."
+  },
+  "navbar": {
+    "openMenu": "Abrir menu principal",
+    "dashboard": "Painel",
+    "team": "Equipe",
+    "projects": "Projetos",
+    "calendar": "Calendário",
+    "notifications": "Ver notificações",
+    "openUserMenu": "Abrir menu do usuário",
+    "profile": "Seu perfil",
+    "settings": "Configurações",
+    "signOut": "Sair",
+    "login": "Entrar"
   }
 }

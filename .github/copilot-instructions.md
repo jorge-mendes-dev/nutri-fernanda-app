@@ -2,17 +2,28 @@
 
 ## Project Overview
 
-This project is a Next.js application. It uses TypeScript and follows a modern file-based routing structure. The main entry point is in the `app/` directory. Styling is managed with global CSS and PostCSS. The project uses ESLint for linting and TypeScript for type checking.
+This project is a Next.js application for nutritionist Fernanda. It uses TypeScript and follows a modern file-based routing structure with the main entry point in the `app/` directory. Styling is managed with global CSS (using Tailwind via PostCSS). The project uses ESLint for linting and TypeScript for type checking. Localization is handled with `next-intl` and translations are stored in the `locales/` directory. The development server runs on port 4000 by default (`npm run dev`).
+
+Key dependencies:
+
+- next@16
+- react@19
+- next-intl
+- @supabase/ssr and @supabase/supabase-js
+- tailwindcss (via PostCSS)
+
+See the README.md for setup and run instructions.
 
 ## Coding Conventions
 
 - Use TypeScript for all new files and components.
-- Prefer functional React components and hooks.
-- Place new pages and layouts in the `app/` directory.
-- Use CSS modules or global styles as appropriate.
+- Prefer functional React components and React hooks.
+- Place new pages and layouts in the `app/` directory, using file-based routing.
+- Use global styles (Tailwind CSS) or CSS modules as appropriate.
 - Keep components small and focused; extract reusable logic into hooks or utility functions.
 - Use named exports for all modules.
-- Follow the ESLint and Prettier rules defined in the project.
+- Follow the ESLint rules defined in the project.
+- Use `next-intl` for all user-facing text and translations.
 
 ## Commit Message Guidelines
 

@@ -2,6 +2,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import { locales } from "../../i18n";
+import Navbar from "../components/Navbar";
+import { SessionProvider } from "../components/SessionProvider";
 import "../globals.css";
 
 export default async function LocaleLayout(props: {
@@ -22,7 +24,10 @@ export default async function LocaleLayout(props: {
     <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <SessionProvider>
+            <Navbar />
+            {children}
+          </SessionProvider>
         </NextIntlClientProvider>
       </body>
     </html>
