@@ -6,8 +6,9 @@
   },
   "login": {
     "title": "Login",
-    "choose": "Choose a social provider to login:",
-    "google": "Google",
+    "signInTitle": "Sign in to your account",
+    "choose": "Sign in with your social account to continue.",
+    "google": "Continue with Google",
     "facebook": "Facebook",
     "loading": "Loading..."
   },

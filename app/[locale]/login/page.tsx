@@ -4,6 +4,7 @@ import { useSession } from "@/app/components/SessionProvider";
 import { supabase } from "@/src/supabase/client";
 import type { Provider } from "@supabase/supabase-js";
 import { useLocale, useTranslations } from "next-intl";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -29,7 +30,6 @@ export default function LoginPage() {
 
   const redirectTo = getSafeRedirect(searchParams?.get("redirect"), locale);
 
-  // Redirect already-authenticated users away from login
   useEffect(() => {
     if (!sessionLoading && session) {
       router.replace(redirectTo);
@@ -53,7 +53,6 @@ export default function LoginPage() {
         setError(error.message);
         setLoading(null);
       }
-      // On success, Supabase will redirect, so no further action needed
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Unknown error");
       setLoading(null);
@@ -61,35 +60,88 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-3xl font-bold mb-4">
-        {t("title", { default: "Login" })}
-      </h1>
-      <p className="mb-6 text-zinc-600">
-        {t("choose", { default: "Choose a social provider to login:" })}
-      </p>
-      {error && (
-        <div
-          role="alert"
-          aria-live="polite"
-          className="mb-4 text-red-600 bg-red-100 px-4 py-2 rounded w-64 text-center"
-        >
-          {error}
+    <div className="flex min-h-full">
+      {/* Left panel */}
+      <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+        <div className="mx-auto w-full max-w-sm lg:w-96">
+          <div>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              className="h-10 w-auto"
+              width={40}
+              height={40}
+            />
+            <h2 className="mt-8 text-2xl/9 font-bold tracking-tight text-gray-900">
+              {t("signInTitle")}
+            </h2>
+            <p className="mt-2 text-sm/6 text-gray-500">{t("choose")}</p>
+          </div>
+
+          <div className="mt-10">
+            {error && (
+              <div
+                role="alert"
+                aria-live="polite"
+                className="mb-6 text-red-600 bg-red-50 border border-red-200 px-4 py-3 rounded-md text-sm"
+              >
+                {error}
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 gap-4">
+              {providers.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => handleLogin(p.id)}
+                  disabled={!!loading}
+                  className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {p.id === "google" && (
+                    <svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      className="h-5 w-5"
+                    >
+                      <path
+                        d="M12.0003 4.75C13.7703 4.75 15.3553 5.36002 16.6053 6.54998L20.0303 3.125C17.9502 1.19 15.2353 0 12.0003 0C7.31028 0 3.25527 2.69 1.28027 6.60998L5.27028 9.70498C6.21525 6.86002 8.87028 4.75 12.0003 4.75Z"
+                        fill="#EA4335"
+                      />
+                      <path
+                        d="M23.49 12.275C23.49 11.49 23.415 10.73 23.3 10H12V14.51H18.47C18.18 15.99 17.34 17.25 16.08 18.1L19.945 21.1C22.2 19.01 23.49 15.92 23.49 12.275Z"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M5.26498 14.2949C5.02498 13.5699 4.88501 12.7999 4.88501 11.9999C4.88501 11.1999 5.01998 10.4299 5.26498 9.7049L1.275 6.60986C0.46 8.22986 0 10.0599 0 11.9999C0 13.9399 0.46 15.7699 1.28 17.3899L5.26498 14.2949Z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M12.0004 24.0001C15.2404 24.0001 17.9654 22.935 19.9454 21.095L16.0804 18.095C15.0054 18.82 13.6204 19.245 12.0004 19.245C8.8704 19.245 6.21537 17.135 5.2654 14.29L1.27539 17.385C3.25539 21.31 7.3104 24.0001 12.0004 24.0001Z"
+                        fill="#34A853"
+                      />
+                    </svg>
+                  )}
+                  <span className="text-sm/6 font-semibold">
+                    {loading === p.id
+                      ? t("loading")
+                      : t(p.id, { default: p.label })}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
-      )}
-      <div className="flex flex-col gap-4 w-64">
-        {providers.map((p) => (
-          <button
-            key={p.id}
-            className={`bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded shadow disabled:opacity-60`}
-            onClick={() => handleLogin(p.id)}
-            disabled={!!loading}
-          >
-            {loading === p.id
-              ? t("loading", { default: "Loading..." })
-              : t(p.id, { default: p.label })}
-          </button>
-        ))}
+      </div>
+
+      {/* Right image panel */}
+      <div className="relative hidden w-0 flex-1 lg:block">
+        <Image
+          alt=""
+          src="/perfil.jpeg"
+          fill
+          className="object-cover"
+          priority
+        />
       </div>
     </div>
   );

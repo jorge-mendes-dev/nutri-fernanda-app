@@ -21,8 +21,8 @@ export default async function LocaleLayout(props: {
     notFound();
   }
   return (
-    <html lang={locale}>
-      <body>
+    <html lang={locale} className="h-full bg-gray-100">
+      <body className="h-full">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SessionProvider>
             <Navbar />

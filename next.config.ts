@@ -8,4 +8,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 const withNextIntl = createNextIntlPlugin();
 
-export default withNextIntl({});
+export default withNextIntl({
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "ui-avatars.com" },
+      { protocol: "https", hostname: "*.googleusercontent.com" },
+    ],
+  },
+});

@@ -33,6 +33,9 @@ export default function Navbar() {
     }
     prevSession.current = session;
   }, [session, router]);
+
+  if (!session) return null;
+
   return (
     <Disclosure as="nav" className="relative bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -58,7 +61,7 @@ export default function Navbar() {
             <div className="flex shrink-0 items-center">
               <Image
                 alt="Logo"
-                src="/logo.svg"
+                src="/logo.png"
                 width={40}
                 height={40}
                 className="h-8 w-auto"
@@ -80,78 +83,72 @@ export default function Navbar() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            {session ? (
-              <>
-                <button
-                  type="button"
-                  className="relative rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600"
-                >
+            <>
+              <button
+                type="button"
+                className="relative rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600"
+              >
+                <span className="absolute -inset-1.5" />
+                <span className="sr-only">
+                  {t("navbar.notifications", {
+                    default: "View notifications",
+                  })}
+                </span>
+                <BellIcon aria-hidden="true" className="size-6" />
+              </button>
+              {/* Profile dropdown */}
+              <Menu as="div" className="relative ml-3">
+                <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">
-                    {t("navbar.notifications", {
-                      default: "View notifications",
-                    })}
+                    {t("navbar.openUserMenu", { default: "Open user menu" })}
                   </span>
-                  <BellIcon aria-hidden="true" className="size-6" />
-                </button>
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
-                  <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">
-                      {t("navbar.openUserMenu", { default: "Open user menu" })}
-                    </span>
-                    <Image
-                      alt="User avatar"
-                      src="/avatar.png"
-                      width={32}
-                      height={32}
-                      className="size-8 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5"
-                    />
-                  </MenuButton>
-                  <MenuItems
-                    transition
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-                  >
-                    <MenuItem>
-                      <Link
-                        href={`/${locale}/patient`}
-                        className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                      >
-                        {t("navbar.profile", { default: "Your profile" })}
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link
-                        href={`/${locale}/settings`}
-                        className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                      >
-                        {t("navbar.settings", { default: "Settings" })}
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <button
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                        onClick={async () => {
-                          await supabase.auth.signOut();
-                          router.refresh();
-                          router.replace(`/${locale}/login`);
-                        }}
-                      >
-                        {t("navbar.signOut", { default: "Sign out" })}
-                      </button>
-                    </MenuItem>
-                  </MenuItems>
-                </Menu>
-              </>
-            ) : (
-              <Link
-                href={`/${locale}/login`}
-                className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white shadow hover:bg-indigo-700"
-              >
-                {t("navbar.login", { default: "Login" })}
-              </Link>
-            )}
+                  <Image
+                    alt="User avatar"
+                    src={
+                      session.user.user_metadata?.avatar_url ??
+                      `https://ui-avatars.com/api/?name=${encodeURIComponent(session.user.email ?? "U")}&background=6366f1&color=fff`
+                    }
+                    width={32}
+                    height={32}
+                    className="size-8 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5"
+                  />
+                </MenuButton>
+                <MenuItems
+                  transition
+                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+                >
+                  <MenuItem>
+                    <Link
+                      href={`/${locale}/patient`}
+                      className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                    >
+                      {t("navbar.profile", { default: "Your profile" })}
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link
+                      href={`/${locale}/settings`}
+                      className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                    >
+                      {t("navbar.settings", { default: "Settings" })}
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <button
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                      onClick={async () => {
+                        await supabase.auth.signOut();
+                        router.refresh();
+                        router.replace(`/${locale}/login`);
+                      }}
+                    >
+                      {t("navbar.signOut", { default: "Sign out" })}
+                    </button>
+                  </MenuItem>
+                </MenuItems>
+              </Menu>
+            </>
           </div>
         </div>
       </div>
