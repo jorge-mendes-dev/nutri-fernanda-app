@@ -1,8 +1,11 @@
 {
   "greeting": "Olá",
   "home": {
-    "title": "Bem-vindo ao aplicativo!",
-    "description": "Esta é a versão em português."
+    "title": "Nossos Planos e Serviços",
+    "subtitle": "Planos nutricionais baseados em ciência, criados pela Fernanda e personalizados para seus objetivos.",
+    "addToCart": "Adicionar ao Carrinho",
+    "added": "Adicionado!",
+    "viewCart": "Ver carrinho ({count})"
   },
   "login": {
     "title": "Entrar",
@@ -12,20 +15,41 @@
     "facebook": "Facebook",
     "loading": "Carregando..."
   },
-  "dashboard": {
-    "title": "Painel Administrativo",
-    "welcome": "Bem-vindo ao painel administrativo."
+  "cart": {
+    "title": "Seu Carrinho",
+    "empty": "Seu carrinho está vazio.",
+    "backToHome": "Ver planos",
+    "remove": "Remover",
+    "subtotal": "Subtotal",
+    "checkout": "Ir para o Pagamento",
+    "quantity": "Qtd",
+    "decreaseQty": "Diminuir quantidade",
+    "increaseQty": "Aumentar quantidade"
   },
-  "patient": {
-    "title": "Área do Paciente",
-    "welcome": "Bem-vindo à sua área do paciente."
+  "checkout": {
+    "title": "Pagamento",
+    "orderSummary": "Resumo do Pedido",
+    "total": "Total",
+    "paymentDetails": "Dados do Pagamento",
+    "nameOnCard": "Nome no cartão",
+    "cardNumber": "Número do cartão",
+    "expiry": "Validade",
+    "cvv": "CVV",
+    "placeOrder": "Confirmar Pedido",
+    "successTitle": "Pedido Realizado!",
+    "successMessage": "Obrigado! Entraremos em contato em breve para começarmos.",
+    "backToHome": "Voltar à Página Inicial"
+  },
+  "profile": {
+    "title": "Seu Perfil",
+    "name": "Nome",
+    "email": "E-mail",
+    "memberSince": "Membro desde"
   },
   "navbar": {
     "openMenu": "Abrir menu principal",
-    "dashboard": "Painel",
-    "team": "Equipe",
-    "projects": "Projetos",
-    "calendar": "Calendário",
+    "home": "Início",
+    "cart": "Carrinho",
     "notifications": "Ver notificações",
     "openUserMenu": "Abrir menu do usuário",
     "profile": "Seu perfil",

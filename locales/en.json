@@ -1,8 +1,11 @@
 {
   "greeting": "Hello",
   "home": {
-    "title": "Welcome to the app!",
-    "description": "This is the English version."
+    "title": "Our Plans & Services",
+    "subtitle": "Science-backed nutrition plans crafted by Fernanda, personalized for your goals.",
+    "addToCart": "Add to Cart",
+    "added": "Added!",
+    "viewCart": "View cart ({count})"
   },
   "login": {
     "title": "Login",
@@ -12,20 +15,41 @@
     "facebook": "Facebook",
     "loading": "Loading..."
   },
-  "dashboard": {
-    "title": "Admin Dashboard",
-    "welcome": "Welcome to the admin dashboard."
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty.",
+    "backToHome": "Browse plans",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "checkout": "Proceed to Checkout",
+    "quantity": "Qty",
+    "decreaseQty": "Decrease quantity",
+    "increaseQty": "Increase quantity"
   },
-  "patient": {
-    "title": "Patient Area",
-    "welcome": "Welcome to your patient area."
+  "checkout": {
+    "title": "Checkout",
+    "orderSummary": "Order Summary",
+    "total": "Total",
+    "paymentDetails": "Payment Details",
+    "nameOnCard": "Name on card",
+    "cardNumber": "Card number",
+    "expiry": "Expiry",
+    "cvv": "CVV",
+    "placeOrder": "Place Order",
+    "successTitle": "Order Placed!",
+    "successMessage": "Thank you! We\u2019ll be in touch shortly to get started.",
+    "backToHome": "Back to Home"
+  },
+  "profile": {
+    "title": "Your Profile",
+    "name": "Name",
+    "email": "Email",
+    "memberSince": "Member since"
   },
   "navbar": {
     "openMenu": "Open main menu",
-    "dashboard": "Dashboard",
-    "team": "Team",
-    "projects": "Projects",
-    "calendar": "Calendar",
+    "home": "Home",
+    "cart": "Cart",
     "notifications": "View notifications",
     "openUserMenu": "Open user menu",
     "profile": "Your profile",

@@ -14,7 +14,7 @@ const providers: { id: Provider; label: string }[] = [
 
 function getSafeRedirect(value: string | null, locale: string): string {
   if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return `/${locale}/dashboard`;
+    return `/${locale}/`;
   }
   return value;
 }

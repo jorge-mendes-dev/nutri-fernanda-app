@@ -9,7 +9,12 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  BellIcon,
+  ShoppingCartIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,12 +22,14 @@ import Link from "next/link";
 import { supabase } from "@/src/supabase/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
+import { useCart } from "./CartProvider";
 import { useSession } from "./SessionProvider";
 
 export default function Navbar() {
   const t = useTranslations();
   const locale = useLocale();
   const { session } = useSession();
+  const { itemCount } = useCart();
   const router = useRouter();
   const prevSession = useRef(session);
 
@@ -69,16 +76,22 @@ export default function Navbar() {
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
-                href={`/${locale}/dashboard`}
+                href={`/${locale}/`}
                 className="inline-flex items-center border-b-2 border-indigo-600 px-1 pt-1 text-sm font-medium text-gray-900"
               >
-                {t("navbar.dashboard", { default: "Dashboard" })}
+                {t("navbar.home", { default: "Home" })}
               </Link>
               <Link
-                href={`/${locale}/team`}
-                className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                href={`/${locale}/cart`}
+                className="relative inline-flex items-center gap-1.5 border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
-                {t("navbar.team", { default: "Team" })}
+                <ShoppingCartIcon className="h-4 w-4" />
+                {t("navbar.cart", { default: "Cart" })}
+                {itemCount > 0 && (
+                  <span className="ml-0.5 rounded-full bg-green-600 px-1.5 py-0.5 text-[10px] font-bold text-white leading-none">
+                    {itemCount}
+                  </span>
+                )}
               </Link>
             </div>
           </div>
@@ -120,7 +133,7 @@ export default function Navbar() {
                 >
                   <MenuItem>
                     <Link
-                      href={`/${locale}/patient`}
+                      href={`/${locale}/profile`}
                       className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                     >
                       {t("navbar.profile", { default: "Your profile" })}
@@ -140,7 +153,7 @@ export default function Navbar() {
                       onClick={async () => {
                         await supabase.auth.signOut();
                         router.refresh();
-                        router.replace(`/${locale}/login`);
+                        router.replace(`/${locale}/`);
                       }}
                     >
                       {t("navbar.signOut", { default: "Sign out" })}
@@ -156,31 +169,22 @@ export default function Navbar() {
         <div className="space-y-1 pt-2 pb-4">
           <DisclosureButton
             as={Link}
-            href={`/${locale}/dashboard`}
+            href={`/${locale}/`}
             className="block border-l-4 border-indigo-600 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700"
           >
-            {t("navbar.dashboard", { default: "Dashboard" })}
+            {t("navbar.home", { default: "Home" })}
           </DisclosureButton>
           <DisclosureButton
             as={Link}
-            href={`/${locale}/team`}
-            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+            href={`/${locale}/cart`}
+            className="flex items-center gap-1.5 border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
           >
-            {t("navbar.team", { default: "Team" })}
-          </DisclosureButton>
-          <DisclosureButton
-            as={Link}
-            href={`/${locale}/projects`}
-            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-          >
-            {t("navbar.projects", { default: "Projects" })}
-          </DisclosureButton>
-          <DisclosureButton
-            as={Link}
-            href={`/${locale}/calendar`}
-            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-          >
-            {t("navbar.calendar", { default: "Calendar" })}
+            {t("navbar.cart", { default: "Cart" })}
+            {itemCount > 0 && (
+              <span className="rounded-full bg-green-600 px-1.5 py-0.5 text-[10px] font-bold text-white leading-none">
+                {itemCount}
+              </span>
+            )}
           </DisclosureButton>
         </div>
       </DisclosurePanel>
