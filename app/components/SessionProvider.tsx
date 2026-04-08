@@ -27,6 +27,16 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let mounted = true;
 
+    // Eagerly hydrate from the current session (reads from cookies/storage)
+    // so the loading state resolves immediately on page load, before any
+    // auth state change event fires.
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (mounted) {
+        setSession(session ?? null);
+        setLoading(false);
+      }
+    });
+
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         if (mounted) {

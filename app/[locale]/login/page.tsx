@@ -3,7 +3,7 @@
 import { useSession } from "@/app/components/SessionProvider";
 import { supabase } from "@/src/supabase/client";
 import type { Provider } from "@supabase/supabase-js";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -11,9 +11,9 @@ const providers: { id: Provider; label: string }[] = [
   { id: "google", label: "Google" },
 ];
 
-function getSafeRedirect(value: string | null): string {
+function getSafeRedirect(value: string | null, locale: string): string {
   if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return "/dashboard";
+    return `/${locale}/dashboard`;
   }
   return value;
 }
@@ -25,8 +25,9 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { session, loading: sessionLoading } = useSession();
+  const locale = useLocale();
 
-  const redirectTo = getSafeRedirect(searchParams?.get("redirect"));
+  const redirectTo = getSafeRedirect(searchParams?.get("redirect"), locale);
 
   // Redirect already-authenticated users away from login
   useEffect(() => {

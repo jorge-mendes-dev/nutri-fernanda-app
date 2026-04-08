@@ -14,7 +14,6 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
-import { defaultLocale } from "@/i18n";
 import { supabase } from "@/src/supabase/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -67,13 +66,13 @@ export default function Navbar() {
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
-                href="/dashboard"
+                href={`/${locale}/dashboard`}
                 className="inline-flex items-center border-b-2 border-indigo-600 px-1 pt-1 text-sm font-medium text-gray-900"
               >
                 {t("navbar.dashboard", { default: "Dashboard" })}
               </Link>
               <Link
-                href="/team"
+                href={`/${locale}/team`}
                 className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
                 {t("navbar.team", { default: "Team" })}
@@ -116,7 +115,7 @@ export default function Navbar() {
                   >
                     <MenuItem>
                       <Link
-                        href="/profile"
+                        href={`/${locale}/patient`}
                         className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                       >
                         {t("navbar.profile", { default: "Your profile" })}
@@ -124,7 +123,7 @@ export default function Navbar() {
                     </MenuItem>
                     <MenuItem>
                       <Link
-                        href="/settings"
+                        href={`/${locale}/settings`}
                         className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                       >
                         {t("navbar.settings", { default: "Settings" })}
@@ -136,11 +135,7 @@ export default function Navbar() {
                         onClick={async () => {
                           await supabase.auth.signOut();
                           router.refresh();
-                          router.replace(
-                            locale === defaultLocale
-                              ? "/login"
-                              : `/${locale}/login`,
-                          );
+                          router.replace(`/${locale}/login`);
                         }}
                       >
                         {t("navbar.signOut", { default: "Sign out" })}
@@ -151,7 +146,7 @@ export default function Navbar() {
               </>
             ) : (
               <Link
-                href="/login"
+                href={`/${locale}/login`}
                 className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white shadow hover:bg-indigo-700"
               >
                 {t("navbar.login", { default: "Login" })}
@@ -164,28 +159,28 @@ export default function Navbar() {
         <div className="space-y-1 pt-2 pb-4">
           <DisclosureButton
             as={Link}
-            href="/dashboard"
+            href={`/${locale}/dashboard`}
             className="block border-l-4 border-indigo-600 bg-indigo-50 py-2 pr-4 pl-3 text-base font-medium text-indigo-700"
           >
             {t("navbar.dashboard", { default: "Dashboard" })}
           </DisclosureButton>
           <DisclosureButton
             as={Link}
-            href="/team"
+            href={`/${locale}/team`}
             className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
           >
             {t("navbar.team", { default: "Team" })}
           </DisclosureButton>
           <DisclosureButton
             as={Link}
-            href="/projects"
+            href={`/${locale}/projects`}
             className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
           >
             {t("navbar.projects", { default: "Projects" })}
           </DisclosureButton>
           <DisclosureButton
             as={Link}
-            href="/calendar"
+            href={`/${locale}/calendar`}
             className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
           >
             {t("navbar.calendar", { default: "Calendar" })}
