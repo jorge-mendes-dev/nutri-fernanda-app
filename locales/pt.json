@@ -46,6 +46,15 @@
     "email": "E-mail",
     "memberSince": "Membro desde"
   },
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "A página que você está procurando não existe.",
+    "goHome": "Ir para o início"
+  },
+  "error": {
+    "title": "Algo deu errado",
+    "tryAgain": "Tentar novamente"
+  },
   "navbar": {
     "openMenu": "Abrir menu principal",
     "home": "Início",
