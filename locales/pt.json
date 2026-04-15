@@ -5,7 +5,20 @@
     "subtitle": "Planos nutricionais baseados em ciência, criados pela Fernanda e personalizados para seus objetivos.",
     "addToCart": "Adicionar ao Carrinho",
     "added": "Adicionado!",
-    "viewCart": "Ver carrinho ({count})"
+    "viewCart": "Ver carrinho ({count})",
+    "hero": {
+      "eyebrow": "Nutrição Personalizada",
+      "headingLine1": "Transforme sua saúde",
+      "headingLine2": "com ciência de verdade.",
+      "description": "Planos nutricionais baseados em evidências, criados sob medida pela Fernanda para você conquistar seus objetivos com equilíbrio e bem-estar real.",
+      "cta": "Ver Planos",
+      "ctaSecondary": "Agendar Consulta",
+      "statPatients": "Pacientes atendidos",
+      "statYears": "Anos de experiência",
+      "statPersonalized": "Personalizado",
+      "badgeLabel": "Nutricionista",
+      "badgeValue": "CRN Registrada"
+    }
   },
   "login": {
     "title": "Entrar",

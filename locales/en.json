@@ -5,7 +5,20 @@
     "subtitle": "Science-backed nutrition plans crafted by Fernanda, personalized for your goals.",
     "addToCart": "Add to Cart",
     "added": "Added!",
-    "viewCart": "View cart ({count})"
+    "viewCart": "View cart ({count})",
+    "hero": {
+      "eyebrow": "Personalized Nutrition",
+      "headingLine1": "Transform your health",
+      "headingLine2": "with real science.",
+      "description": "Evidence-based nutrition plans crafted by Fernanda, tailored to help you reach your goals with lasting balance and genuine wellbeing.",
+      "cta": "View Plans",
+      "ctaSecondary": "Book a Consultation",
+      "statPatients": "Patients served",
+      "statYears": "Years of experience",
+      "statPersonalized": "Personalized",
+      "badgeLabel": "Nutritionist",
+      "badgeValue": "Registered CRN"
+    }
   },
   "login": {
     "title": "Login",

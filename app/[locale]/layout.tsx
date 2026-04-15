@@ -1,4 +1,5 @@
 import { NextIntlClientProvider } from "next-intl";
+import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import { locales } from "../../i18n";
@@ -7,9 +8,16 @@ import Navbar from "../components/Navbar";
 import { SessionProvider } from "../components/SessionProvider";
 import "../globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
 export default async function LocaleLayout(props: {
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
   const { children, params } = props;
   const { locale } = await params;
@@ -22,8 +30,8 @@ export default async function LocaleLayout(props: {
     notFound();
   }
   return (
-    <html lang={locale} className="h-full bg-gray-100">
-      <body className="h-full">
+    <html lang={locale} className={`h-full ${inter.variable}`}>
+      <body className="h-full bg-white text-[#0d0d0d]">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SessionProvider>
             <CartProvider>

@@ -26,30 +26,34 @@ function ProfileContent() {
     : "—";
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#faf7f2] py-10">
+    <div className="min-h-[calc(100vh-4rem)] bg-white py-10">
       <div className="mx-auto max-w-xl px-4 sm:px-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-8">{t("title")}</h1>
-        <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-100 flex flex-col items-center text-center gap-4">
+        <h1 className="text-[40px] font-semibold leading-[1.1] tracking-[-0.8px] text-[#0d0d0d] mb-8">
+          {t("title")}
+        </h1>
+        <div className="rounded-2xl border border-[rgba(0,0,0,0.05)] bg-white p-8 shadow-[rgba(0,0,0,0.03)_0px_2px_4px] flex flex-col items-center text-center gap-4">
           <Image
             src={avatarUrl}
             alt={name}
             width={80}
             height={80}
-            className="rounded-full ring-4 ring-green-100"
+            className="rounded-full ring-4 ring-[#d4fae8]"
           />
-          <h2 className="text-xl font-semibold text-gray-900">{name}</h2>
-          <dl className="w-full mt-2 divide-y divide-gray-100 text-sm text-left">
+          <h2 className="text-[24px] font-medium leading-[1.3] tracking-[-0.24px] text-[#0d0d0d]">
+            {name}
+          </h2>
+          <dl className="w-full mt-2 divide-y divide-[rgba(0,0,0,0.05)] text-sm text-left">
             <div className="flex justify-between py-3">
-              <dt className="font-medium text-gray-500">{t("name")}</dt>
-              <dd className="text-gray-900">{name}</dd>
+              <dt className="font-medium text-[#888888]">{t("name")}</dt>
+              <dd className="text-[#0d0d0d]">{name}</dd>
             </div>
             <div className="flex justify-between py-3">
-              <dt className="font-medium text-gray-500">{t("email")}</dt>
-              <dd className="text-gray-900">{email}</dd>
+              <dt className="font-medium text-[#888888]">{t("email")}</dt>
+              <dd className="text-[#0d0d0d]">{email}</dd>
             </div>
             <div className="flex justify-between py-3">
-              <dt className="font-medium text-gray-500">{t("memberSince")}</dt>
-              <dd className="text-gray-900">{memberSince}</dd>
+              <dt className="font-medium text-[#888888]">{t("memberSince")}</dt>
+              <dd className="text-[#0d0d0d]">{memberSince}</dd>
             </div>
           </dl>
         </div>

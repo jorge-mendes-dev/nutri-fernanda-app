@@ -60,7 +60,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-full">
+    <div className="flex min-h-[calc(100vh-4rem)]">
       {/* Left panel */}
       <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:w-96">
@@ -72,10 +72,12 @@ export default function LoginPage() {
               width={40}
               height={40}
             />
-            <h2 className="mt-8 text-2xl/9 font-bold tracking-tight text-gray-900">
+            <h2 className="mt-8 text-[40px] font-semibold leading-[1.1] tracking-[-0.8px] text-[#0d0d0d]">
               {t("signInTitle")}
             </h2>
-            <p className="mt-2 text-sm/6 text-gray-500">{t("choose")}</p>
+            <p className="mt-2 text-sm leading-[1.5] text-[#666666]">
+              {t("choose")}
+            </p>
           </div>
 
           <div className="mt-10">
@@ -83,7 +85,7 @@ export default function LoginPage() {
               <div
                 role="alert"
                 aria-live="polite"
-                className="mb-6 text-red-600 bg-red-50 border border-red-200 px-4 py-3 rounded-md text-sm"
+                className="mb-6 rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600"
               >
                 {error}
               </div>
@@ -95,7 +97,7 @@ export default function LoginPage() {
                   key={p.id}
                   onClick={() => handleLogin(p.id)}
                   disabled={!!loading}
-                  className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="flex w-full items-center justify-center gap-3 rounded-full border border-[rgba(0,0,0,0.08)] bg-white px-5 py-3 text-sm font-medium text-[#0d0d0d] shadow-[rgba(0,0,0,0.03)_0px_2px_4px] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#18E299] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {p.id === "google" && (
                     <svg
@@ -121,7 +123,7 @@ export default function LoginPage() {
                       />
                     </svg>
                   )}
-                  <span className="text-sm/6 font-semibold">
+                  <span className="text-sm font-medium">
                     {loading === p.id
                       ? t("loading")
                       : t(p.id, { default: p.label })}
