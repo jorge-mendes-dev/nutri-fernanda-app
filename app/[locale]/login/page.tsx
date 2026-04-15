@@ -44,7 +44,7 @@ export default function LoginPage() {
         provider,
         options: {
           redirectTo:
-            window.location.origin +
+            (process.env.NEXT_PUBLIC_SITE_URL || window.location.origin) +
             "/auth/callback?next=" +
             encodeURIComponent(redirectTo),
         },
