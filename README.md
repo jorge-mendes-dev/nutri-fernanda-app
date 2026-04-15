@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# nutri-fernanda-app
+
+A web application for nutritionist Fernanda Souza — allowing clients to browse nutrition plans, add them to a cart, check out, manage their profile, and authenticate via Supabase.
+
+**Live:** [app.nutrifernandasouza.com.br](https://app.nutrifernandasouza.com.br)
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Auth & Database | Supabase (`@supabase/ssr`) |
+| i18n | next-intl (EN / PT) |
+| UI Components | Headless UI, Heroicons |
+| Deployment | Netlify |
+
+## Features
+
+- **Product catalog** — browse and add nutrition plans to a cart
+- **Shopping cart** — adjust quantities, remove items, view subtotal
+- **Checkout** — order summary and payment details form
+- **Authentication** — Google OAuth via Supabase with protected routes
+- **User profile** — view account details and membership info
+- **Internationalization** — English and Portuguese (BR) with `next-intl`
+- **Responsive design** — mobile-first layout with Tailwind CSS
+
+## Project Structure
+
+```
+app/
+  [locale]/         # Locale-scoped pages (home, cart, checkout, login, profile, dashboard)
+  auth/callback/    # Supabase OAuth callback route
+  components/       # Shared components (Navbar, CartProvider, AuthGuard, etc.)
+  globals.css
+locales/
+  en.json           # English translations
+  pt.json           # Portuguese translations
+src/
+  supabase/         # Supabase client (browser + server)
+  i18n/             # next-intl request config
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- A [Supabase](https://supabase.com) project with Google OAuth configured
+
+### Installation
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=your_supabase_anon_key
+```
+
+### Running Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:4000](http://localhost:4000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server on port 4000 |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project is deployed on **Netlify** using the `@netlify/plugin-nextjs` plugin. The build command is `yarn run build` and the publish directory is `.next`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Set the environment variables (`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`) in your Netlify site settings.
